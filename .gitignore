@@ -1,0 +1,4 @@
+.pio
+secrets.ini
+src/secrets.h
+.idea/
