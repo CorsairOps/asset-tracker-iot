@@ -16,15 +16,15 @@ void AssetTracker::sendHeartbeat() {
     try {
         Serial.println("Sending heartbeat to asset service.");
         const String accessToken = this->authService->validateAndGetAccessToken();
-        String url = String(ASSET_API_URL) + "/" + String(ASSET_ID) + "/locations";
 
-        http.begin(url);
+        http.begin(String(EVENT_PUBLISH_URL));
         http.setConnectTimeout(10000);
         http.setTimeout(10000);
         http.addHeader("Content-Type", "application/json");
         http.addHeader("Authorization", "Bearer " + accessToken);
         String payload = buildHeartbeatPayload();
-        const int responseCode = http.PUT(payload);
+        Serial.println("Sending payload: " + payload);
+        const int responseCode = http.POST(payload);
 
         if (responseCode != HTTP_CODE_NO_CONTENT &&
             responseCode != HTTP_CODE_OK &&
@@ -42,9 +42,10 @@ void AssetTracker::sendHeartbeat() {
 }
 
 String AssetTracker::buildHeartbeatPayload() {
+    const String assetId = String(ASSET_ID);
     const double latitude = -90.0 + static_cast<double>(rand()) / (static_cast<double>(RAND_MAX / 180.0));
     const double longitude = -180.0 + static_cast<double>(rand()) / (static_cast<double>(RAND_MAX / 360.0));
-
-    return "{\"latitude\": " + String(latitude, 6) +
-           ", \"longitude\": " + String(longitude, 6) + "}";
+    const String value = "{\\\"assetId\\\": \\\"" + assetId + "\\\", \\\"latitude\\\": " + latitude + ", \\\"longitude\\\": " + longitude + " }";
+    const String key = "asset-location-update-" + assetId;
+    return "{\"key\": \"" + key + "\", \"value\": \"" + String(value) + "\" }";
 }
