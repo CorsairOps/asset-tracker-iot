@@ -20,7 +20,7 @@ void AssetTracker::sendHeartbeat() {
         http.begin(String(EVENT_PUBLISH_URL));
         http.setConnectTimeout(10000);
         http.setTimeout(10000);
-        http.addHeader("Content-Type", "application/json");
+        http.addHeader("Content-Type", "text/plain");
         http.addHeader("Authorization", "Bearer " + accessToken);
         String payload = buildHeartbeatPayload();
         Serial.println("Sending payload: " + payload);
@@ -45,7 +45,5 @@ String AssetTracker::buildHeartbeatPayload() {
     const String assetId = String(ASSET_ID);
     const double latitude = -90.0 + static_cast<double>(rand()) / (static_cast<double>(RAND_MAX / 180.0));
     const double longitude = -180.0 + static_cast<double>(rand()) / (static_cast<double>(RAND_MAX / 360.0));
-    const String value = "{\\\"assetId\\\": \\\"" + assetId + "\\\", \\\"latitude\\\": " + latitude + ", \\\"longitude\\\": " + longitude + " }";
-    const String key = "asset-location-update-" + assetId;
-    return "{\"key\": \"" + key + "\", \"value\": \"" + String(value) + "\" }";
+    return "{\"assetId\": \"" + assetId + "\", \"latitude\": " + latitude + ", \"longitude\": " + longitude + "}";
 }
