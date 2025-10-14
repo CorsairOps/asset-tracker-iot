@@ -7,6 +7,7 @@
 #include <HTTPClient.h>
 
 #include "modules/auth/auth_service.h"
+#include "modules/location/location_service.h"
 
 
 class AssetTracker {
@@ -16,7 +17,9 @@ public:
 
 private:
     AuthService* authService;
-    String buildHeartbeatPayload();
+    LocationService* locationService;
+    Location lastSuccessLocation;
+    String buildHeartbeatPayload(Location loc);
 };
 
 

@@ -10,7 +10,6 @@ AuthService authService;
 AssetTracker assetTracker(&authService);
 
 void setup() {
-    // write your initialization code here
     Serial.begin(115200);
     Serial.println("ESP32 Initialization completed.");
 
@@ -19,7 +18,6 @@ void setup() {
 }
 
 void loop() {
-    // write your code here
     Serial.printf("Running time : %.1f s\n", millis() / 1000.0f);
     wifiManager.validateConnected();
     assetTracker.sendHeartbeat();
