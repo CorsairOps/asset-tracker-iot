@@ -1,0 +1,17 @@
+CompileFlags:
+  Add:
+    - --target=xtensa
+  Remove:
+    - -fno-tree-switch-conversion
+    - -fstrict-volatile-bitfields
+    - -fno-threadsafe-statics
+    - -flto
+    - -fipa-*
+    - -fdevirtualize*
+    - -fno-fat-lto-objects
+    - -Wl,*
+    - -mmcu=*
+    - -mrelax
+    - -mlongcalls
+    - -MD
+    - -MP
