@@ -1,9 +1,9 @@
 #include <Arduino.h>
 
 #include "config.h"
-#include "modules/asset/asset_tracker.h"
-#include "modules/auth/auth_service.h"
-#include "modules/wifi/wifi_manager.h"
+#include "asset_tracker.h"
+#include "auth_service.h"
+#include "wifi_manager.h"
 
 WiFiManager wifiManager;
 AuthService authService;

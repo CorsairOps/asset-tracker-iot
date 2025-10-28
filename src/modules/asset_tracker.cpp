@@ -2,10 +2,10 @@
 // Created by Tyler Wade on 10/12/25.
 //
 
-#include "asset_tracker.h"
 #include <HTTPClient.h>
+#include "asset_tracker.h"
 #include "secrets.h"
-#include "../location/location_service.h"
+#include "location_service.h"
 
 AssetTracker::AssetTracker(AuthService *authService) {
     this->authService = authService;

@@ -4,10 +4,8 @@
 
 #ifndef ASSET_TRACKER_H
 #define ASSET_TRACKER_H
-#include <HTTPClient.h>
-
-#include "modules/auth/auth_service.h"
-#include "modules/location/location_service.h"
+#include "auth_service.h"
+#include "location_service.h"
 
 
 class AssetTracker {

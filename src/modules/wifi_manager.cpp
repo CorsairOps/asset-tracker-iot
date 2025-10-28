@@ -4,7 +4,7 @@
 
 #include "wifi_manager.h"
 #include "WiFi.h"
-#include "../../config.h"
+#include "config.h"
 
 WiFiManager::WiFiManager() {
 }
